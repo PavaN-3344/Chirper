@@ -1,35 +1,129 @@
-<p align="center">
-  <img src="public/images/chirper_logo.svg" alt="Chirper Logo" width="400">
-</p>
+# ✍️ Laravel Microblogging Platform
 
-# Chirper
+A full-stack microblogging web application built with **PHP**, **Laravel**, **MySQL**, and **Eloquent ORM** — inspired by platforms like Twitter/X. Create, edit, and share short-form posts with a secure and intuitive interface.
 
-This is a demo application for the Laravel Learn Bootcamp mini course that can be found at [https://laravel.com/learn](https://laravel.com/learn).
+---
 
-## Video Tutorial
+## 📌 Features
 
-<p align="center">
-  <a href="https://youtu.be/MOLZOXqaomM">
-    <img src="https://img.youtube.com/vi/MOLZOXqaomM/maxresdefault.jpg" alt="Laravel Bootcamp Video Tutorial" width="600">
-  </a>
-</p>
+- **User Authentication** — Secure registration, login, logout, and session management via Laravel Breeze
+- **Authorization** — Role-based access so users can only edit/delete their own posts
+- **Post Management** — Full CRUD: create, read, update, and delete blog posts
+- **Eloquent ORM** — Clean, expressive database interactions with a normalized schema
+- **Blade Templating** — Dynamic, reusable frontend views using Laravel's Blade engine
+- **Normalized Database** — Well-structured MySQL schema supporting dynamic content at scale
 
-Watch the walkthrough video: [https://youtu.be/MOLZOXqaomM](https://youtu.be/MOLZOXqaomM)
+---
 
-## About
+## 🛠️ Tech Stack
 
-Chirper is a simple social media platform built with Laravel that demonstrates the framework's core features and best practices. The application showcases modern Laravel development techniques including:
+| Layer        | Technology            |
+|--------------|-----------------------|
+| Language     | PHP                   |
+| Framework    | Laravel               |
+| Database     | MySQL                 |
+| ORM          | Eloquent ORM          |
+| Auth         | Laravel Breeze        |
+| Templating   | Blade                 |
 
-- Authentication and authorization
-- Database migrations and Eloquent ORM
-- Form validation and request handling
-- Blade templating engine
-- Tailwind CSS for styling
+---
 
-## Getting Started
+## 🚀 Getting Started
 
-To run this application locally, follow the instructions in the [Laravel documentation](https://laravel.com/docs) to get your development server up and running or watch the video tutorial linked above.
+### Prerequisites
 
-## License
+- PHP >= 8.1
+- Composer
+- MySQL
+- Node.js & NPM (for frontend assets)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/laravel-microblogging-platform.git
+cd laravel-microblogging-platform
+
+# Install PHP dependencies
+composer install
+
+# Install frontend dependencies
+npm install && npm run dev
+
+# Copy and configure environment
+cp .env.example .env
+php artisan key:generate
+
+# Configure your .env file
+# DB_DATABASE, DB_USERNAME, DB_PASSWORD
+
+# Run migrations
+php artisan migrate
+
+# Start the development server
+php artisan serve
+```
+
+Then visit `http://localhost:8000` in your browser.
+
+---
+
+## 🌐 Application Routes
+
+| Method | Route                  | Description                   |
+|--------|------------------------|-------------------------------|
+| GET    | `/`                    | Home feed — all posts         |
+| GET    | `/register`            | User registration page        |
+| GET    | `/login`               | User login page               |
+| GET    | `/posts/create`        | Create a new post             |
+| POST   | `/posts`               | Store a new post              |
+| GET    | `/posts/{id}`          | View a single post            |
+| GET    | `/posts/{id}/edit`     | Edit post (owner only)        |
+| PUT    | `/posts/{id}`          | Update post (owner only)      |
+| DELETE | `/posts/{id}`          | Delete post (owner only)      |
+| GET    | `/profile`             | View user profile & posts     |
+
+---
+
+## 🗄️ Database Schema
+
+```
+users
+  - id, name, email, password, timestamps
+
+posts
+  - id, user_id (FK), title, body, timestamps
+```
+
+---
+
+## 📁 Project Structure
+
+```
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/       # PostController, ProfileController
+│   │   └── Middleware/        # Auth middleware
+│   └── Models/                # User, Post (Eloquent models)
+├── resources/
+│   └── views/                 # Blade templates
+│       ├── posts/             # Post CRUD views
+│       ├── auth/              # Login/Register views
+│       └── layouts/           # Shared layout templates
+├── routes/
+│   └── web.php                # Web routes
+└── database/
+    └── migrations/            # DB schema
+```
+
+---
+
+## 📸 Screenshots
+
+> _Add screenshots here to showcase the UI_
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
